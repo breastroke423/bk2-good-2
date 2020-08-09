@@ -12,11 +12,15 @@ class PostCommentsController < ApplicationController
 
 
   def destroy
-    @book = Book.find(params[:book_id])
-    @post_comment = PostComment.find_by(id: params[:id], book_id: params[:book_id])
+    @post_comment = PostComment.find(params[:book_id])
+    @book = @post_comment.book
+    if @post_comment.user != current_user
+      redirect_to request.referer
+    end
     @post_comment.destroy
-    @post_comments = book.post_comments
-    # redirect_to request.referer
+    @post_comments = @book.post_comments
+
+
   end
 
 private

@@ -49,18 +49,18 @@
 
 			</table>
 					<!-- コメトの送信を入れる　start -->
-      <table id="table_comments_<%= @book.id %>" class="table">
-				<%= render 'books/comment', post_comments: @post_comments, book: @book %>
-				   <%= form_with(model: [@book, @post_comment], remote: true) do |f| %>
-            <div class="row">
-              <div class="col-sm-9">
-                <%= f.text_area :comment %>
-              </div>
-            </div>
-            <%= f.submit "送信" %>
-          <% end %>
+      <div id="table_comments_<%= @book.id %>">
+							<%= render 'books/comment', post_comments: @post_comments %>
+			</div>
+					   		<%= form_with(model: [@book, @post_comment], remote: true) do |f| %>
+		            <div class="row">
+		              <div class="col-sm-9">
+           		     <%= f.text_area :comment %>
+            		  </div>
+          		  </div>
+            		<%= f.submit "送信" %>
+          		<% end %>
 
-			</table>
 
 					<!-- コメントの送信を入れる　end -->
 	</div>
