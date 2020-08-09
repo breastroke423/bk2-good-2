@@ -1,0 +1,23 @@
+        <h2>Book Comments</h2>
+        <thead>
+          <tr>
+            <td>User</td>
+            <td>Comments</td>
+          </tr>
+        </thead>
+          <tbody>
+            <% post_comments.each do |comment| %>
+            <tr>
+              <td><%= attachment_image_tag(comment.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %></td>
+              <td><%= comment.comment %></td>
+              <% if comment.user == current_user %>
+              <td><%= link_to "Destroy", book_post_comments_path(comment.book.id), method: :delete, remote: true %></td>
+              <% else %>
+                <td><section> </section></td>
+              <% end %>
+            <% end %>
+            </tr>
+          </tbody>
+        </tr>
+      </table>
+
